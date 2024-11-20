@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гра "Вгадай число"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Вгадай число</h1>
+<p>Я загадав число від 1 до 100. Спробуй вгадати!</p>
+<input type="number" id="guess" placeholder="Введіть ваше число" />
+<button id="submit">Вгадати</button>
+<div class="message" id="message"></div>
+
+<script>
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const submitButton = document.getElementById('submit');
+    const messageDiv = document.getElementById('message');
+
+    submitButton.addEventListener('click', () => {
+        const userGuess = Number(document.getElementById('guess').value);
+        
+        if (userGuess < 1 || userGuess > 100) {
+            messageDiv.textContent = 'Будь ласка, введіть число від 1 до 100.';
+            return;
+        }
+
+        if (userGuess === randomNumber) {
+            messageDiv.textContent = 'Вітаю! Ви вгадали число!';
+        } else if (userGuess < randomNumber) {
+            messageDiv.textContent = 'Загадане число більше!';
+        } else {
+            messageDiv.textContent = 'Загадане число менше!';
+        }
+    });
+</script>
+
+</body>
+</html>
+
